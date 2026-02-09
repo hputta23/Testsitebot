@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# DPR Solutions Recruiting Chatbot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, AI-driven recruiting assistant integrated into the DPR Solutions corporate website. This chatbot helps streamlin the initial candidate screening process by collecting applicant details, verifying work authorization, and accepting resume uploads.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Interactive Chat Interface**: A polished, floating chat widget with smooth animations (Framer Motion).
+-   **Automated Screening Flow**: Logic-driven conversation to gather candidate information.
+-   **Smart Conditional Logic**: Dynamically adjusts questions based on user answers (e.g., asking about Visa details only if sponsorship is needed).
+-   **File Upload**: Supports resume uploads (PDF, DOCX) directly within the chat.
+-   **Email Integration**: Sends ample candidate profiles and resume details to HR via **EmailJS**.
+-   **Responsive Design**: optimized for both desktop and mobile devices.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Frontend**: React (Vite), TypeScript
+-   **Styling**: Tailwind CSS v4, Lucide React (Icons)
+-   **Animations**: Framer Motion
+-   **Email Service**: EmailJS (@emailjs/browser)
 
-## Expanding the ESLint configuration
+## 🤖 Chatbot Workflow
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The chatbot follows a structured decision tree to qualify candidates before submission.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```mermaid
+graph TD
+    A[Start: Auto-Open on Load] --> B{Greeting}
+    B -->|User Enters Name| C[How can I help you today?]
+    C -->|User Request| D[Ask for Email]
+    D -->|User Enters Email| E{Work Auth Check}
+    E -->|Is Authorized?| F{Sponsorship Check}
+    
+    F -->|Yes, Needs Sponsorship| G[Ask Visa Status]
+    G --> H[Ask Visa Expiry]
+    H --> I[Ask STEM OPT Eligibility]
+    I --> J[Ask Relocation Needs]
+    J --> K[Request Resume Upload]
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+    F -->|No, No Sponsorship| K[Request Resume Upload]
+    
+    K -->|File Uploaded| L[Submit Application]
+    L --> M((End: Send Email to HR))
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📦 Setup & Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/hputta23/Testsitebot.git
+    cd Testsitebot
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Run Development Server**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Configure EmailJS**
+    -   Create an account at [EmailJS.com](https://www.emailjs.com/).
+    -   Create a Service (e.g., Gmail) and a Template.
+    -   Update `src/utils/emailService.ts` with your keys:
+        ```typescript
+        const SERVICE_ID = 'YOUR_SERVICE_ID';
+        const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+        const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+        ```
+
+## 📂 Project Structure
+
+-   `src/components/chat/`: Contains the ChatWidget, ChatInput, and ChatMessage components.
+-   `src/utils/emailService.ts`: Handles the API communication with EmailJS.
+-   `src/App.tsx`: Main application entry point.
+
+---
+*Built for DPR Solutions by Gemini Antigravity*
