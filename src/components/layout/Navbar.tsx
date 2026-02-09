@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -60,13 +60,6 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <a
-                        href="tel:+1234567890"
-                        className="flex items-center gap-2 bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-md transition-all text-sm font-semibold"
-                    >
-                        <Phone size={16} />
-                        <span>Call Us</span>
-                    </a>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -98,13 +91,6 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <a
-                        href="tel:+1234567890"
-                        className="flex items-center gap-2 text-accent font-semibold mt-4"
-                    >
-                        <Phone size={20} />
-                        <span>Call Us Now</span>
-                    </a>
                 </div>
             </div>
         </nav>

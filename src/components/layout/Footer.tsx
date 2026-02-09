@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -60,30 +60,9 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Info */}
+                    {/* Contact Info - Removed per user request */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-6 border-b border-accent/30 pb-2 inline-block">Contact Us</h3>
-                        <ul className="space-y-4">
-                            <li className="flex items-start">
-                                <MapPin className="text-accent mt-1 mr-3 flex-shrink-0" size={18} />
-                                <span className="text-gray-300 text-sm">
-                                    123 Tech Park Drive,<br />
-                                    Suite 400,<br />
-                                    Silicon Valley, CA 94000
-                                </span>
-                            </li>
-                            <li className="flex items-center">
-                                <Phone className="text-accent mr-3 flex-shrink-0" size={18} />
-                                <a href="tel:+1234567890" className="text-gray-300 hover:text-accent transition-colors text-sm">
-                                    +1 (234) 567-890
-                                </a>
-                            </li>
-                            <li className="flex items-center">
-                                <Mail className="text-accent mr-3 flex-shrink-0" size={18} />
-                                <a href="mailto:info@dprsolutions.com" className="text-gray-300 hover:text-accent transition-colors text-sm">
-                                    info@dprsolutions.com
-                                </a>
-                            </li>
-                        </ul>
+                        {/* Placeholder or just hidden */}
                     </div>
                 </div>
 
