@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+
+  --color-primary: #0B2341;
+  --color-primary-light: #1A3A5E;
+
+  --color-accent: #00AEEF;
+  --color-accent-hover: #0095CC;
+
+  --color-text-main: #333333;
+  --color-text-light: #666666;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-text-main;
+  }
+}
