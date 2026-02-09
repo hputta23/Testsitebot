@@ -1,9 +1,9 @@
 import emailjs from '@emailjs/browser';
 
 // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS
-const SERVICE_ID = 'service_zt60q6q';
-const TEMPLATE_ID = 'template_oxl0ipj';
-const PUBLIC_KEY = 'Tv1NEVUXCk2dZp_Qa';
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_zt60q6q';
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_oxl0ipj';
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'Tv1NEVUXCk2dZp_Qa';
 
 interface ApplicationData {
     name: string;
