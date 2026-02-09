@@ -1,9 +1,9 @@
-import React from 'react';
+
 import HeroCarousel from '../components/sections/HeroCarousel';
 import ServiceCard from '../components/sections/ServiceCard';
 import ClientLogoGrid from '../components/sections/ClientLogoGrid';
 import { Cloud, Shield, Settings, Server, Users, Monitor } from 'lucide-react';
-import { motion } from 'framer-motion';
+
 
 const Home = () => {
     const services = [

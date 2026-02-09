@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Target, Eye, Heart, Award } from 'lucide-react';
 
 const About = () => {

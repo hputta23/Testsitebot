@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const clients = [
     'Symantec', 'Wells Fargo', 'Amazon', 'Cisco', 'ServiceNow', 'Oracle'

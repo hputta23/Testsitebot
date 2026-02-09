@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ServiceCard from '../components/sections/ServiceCard';
 import { Cloud, Shield, Settings, Server, Users, Monitor, Code, Database, Globe } from 'lucide-react';
 

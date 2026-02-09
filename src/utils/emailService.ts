@@ -18,7 +18,7 @@ interface ApplicationData {
     relocation?: string;
 }
 
-export const sendApplicationEmail = async (data: ApplicationData, file: File | null) => {
+export const sendApplicationEmail = async (data: ApplicationData, _file: File | null) => {
     try {
         // file upload is tricky with free emailjs, usually requires converting to base64 
         // and using a specific template parameter. 
