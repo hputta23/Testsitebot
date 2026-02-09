@@ -35,7 +35,7 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-6 border-b border-accent/30 pb-2 inline-block">Quick Links</h3>
                         <ul className="space-y-3">
-                            {['Home', 'About Us', 'Careers', 'Clients', 'Contact Us'].map((item) => (
+                            {['Home'].map((item) => (
                                 <li key={item}>
                                     <Link to="/" className="text-gray-300 hover:text-accent transition-colors text-sm flex items-center">
                                         <span className="mr-2">›</span> {item}
@@ -48,7 +48,7 @@ const Footer = () => {
                     {/* Services */}
                     <div>
                         <h3 className="text-lg font-semibold mb-6 border-b border-accent/30 pb-2 inline-block">Our Services</h3>
-                        <ul className="space-y-3">
+                        {/* <ul className="space-y-3">
                             {['ServiceNow Solutions', 'Appian Development', 'Cloud Migration', 'Cybersecurity', 'Data Analytics'].map((item) => (
                                 <li key={item}>
                                     <Link to="/services" className="text-gray-300 hover:text-accent transition-colors text-sm flex items-center">
@@ -56,7 +56,8 @@ const Footer = () => {
                                     </Link>
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
+                        <p className="text-gray-400 text-sm">Explore our services on the Home page.</p>
                     </div>
 
                     {/* Contact Info */}
