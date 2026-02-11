@@ -93,7 +93,7 @@ const ChatWidget = () => {
                                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                                 <div>
                                     <h3 className="font-bold text-sm">DPR AI Assistant</h3>
-                                    <p className="text-xs text-blue-200">Powered by Gemini</p>
+                                    <p className="text-xs text-blue-200">Online & Ready to help</p>
                                 </div>
                             </div>
                             <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white transition-colors">
