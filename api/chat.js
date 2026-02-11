@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       - Do NOT use jokes, sarcasm, or slang.
       - If the candidate asks about services, provide a brief, professional answer, then return to the interview process.
       - If the candidate declines to answer, politely encourage them.
-      - Once you have collected all 4 items, state: "Thank you. I have recorded your profile. Please email your resume to careers@dprsolutions.com to complete your application."
+      - Once you have collected all 4 items, state: "Thank you. Please upload your resume here (using the paperclip icon) so I can forward your complete application to our HR team."
       
       TONE:
       - Formal, respectful, concise.
