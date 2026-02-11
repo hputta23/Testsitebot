@@ -37,17 +37,51 @@ const ChatWidget = () => {
         }]);
     };
 
-    const handleSendMessage = async (text: string, _file?: File) => {
+    // Import sendApplicationEmail
+    import { sendApplicationEmail } from '../../utils/emailService';
+
+    // ... (inside component)
+
+    const handleSendMessage = async (text: string, file?: File) => {
         // Add User Message
         const tempId = Date.now().toString();
-        setMessages(prev => [...prev, {
+        const userMsg: Message = {
             id: tempId,
             sender: 'user',
-            text,
+            text: file ? `Uploaded Resume: ${file.name}` : text,
+            isFile: !!file,
+            fileName: file?.name,
             timestamp: new Date()
-        }]);
+        };
 
+        setMessages(prev => [...prev, userMsg]);
         setIsLoading(true);
+
+        // If file is provided, treat as resume upload and send email
+        if (file) {
+            try {
+                // Placeholder data for email service (since AI manages flow now)
+                const appData = {
+                    name: "See Chat Transcript",
+                    email: "See Chat Transcript",
+                    helpContext: "Resume Uploaded",
+                    authCheck: "See Chat Transcript",
+                    sponsorship: "See Chat Transcript",
+                    role: "New Applicant"
+                };
+
+                // Send email with full history including current message
+                await sendApplicationEmail(appData, file, [...messages, userMsg]);
+
+                addBotMessage("Thanks! I've received your resume and forwarded your application to our HR team. 🚀");
+            } catch (error) {
+                console.error("Email Error:", error);
+                addBotMessage("I got your resume, but had trouble emailing it. Please email it directly to careers@dprsolutions.com.");
+            } finally {
+                setIsLoading(false);
+            }
+            return; // Stop here, don't ping AI for this turn
+        }
 
         try {
             // Call AI Endpoint
@@ -56,7 +90,7 @@ const ChatWidget = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: text,
-                    history: messages.map(m => ({ sender: m.sender, text: m.text })) // Send context
+                    history: messages.map(m => ({ sender: m.sender, text: m.text })) // Send context 
                 })
             });
 
