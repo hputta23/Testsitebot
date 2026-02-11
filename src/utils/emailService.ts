@@ -18,13 +18,34 @@ interface ApplicationData {
     relocation?: string;
 }
 
-export const sendApplicationEmail = async (data: ApplicationData, _file: File | null) => {
+// Helper to convert file to base64
+const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+    });
+};
+
+export const sendApplicationEmail = async (data: ApplicationData, file: File | null, chatHistory: any[]) => {
     try {
-        // file upload is tricky with free emailjs, usually requires converting to base64 
-        // and using a specific template parameter. 
-        // For now, we will just send the data fields.
-        // Handling file attachments in free tier often requires EmailJS premium or passing a link.
-        // We will try to pass it as a base64 string if small enough, otherwise warn.
+        let fileData = null;
+        if (file) {
+            if (file.size > 50000) { // 50KB limit warning for free tier, though some plans allow more
+                console.warn("File size > 50KB. Attachment might fail on free EmailJS tier.");
+            }
+            try {
+                fileData = await fileToBase64(file);
+            } catch (e) {
+                console.error("Error converting file", e);
+            }
+        }
+
+        // Format Chat Transcript
+        const formattedChat = chatHistory.map(msg =>
+            `[${msg.sender === 'bot' ? 'Bot' : 'User'}]: ${msg.text} ${msg.isFile ? '(File Uploaded)' : ''}`
+        ).join('\n');
 
         const templateParams = {
             to_name: 'HR Team',
@@ -47,8 +68,8 @@ export const sendApplicationEmail = async (data: ApplicationData, _file: File | 
                 Relocation Needed: ${data.relocation}
                 ` : ''}
             `,
-            // If you set up a file attachment in EmailJS, you'd pass the content here.
-            // verifying file size < 50kb for free tier usually.
+            chat_transcript: formattedChat,
+            my_file: fileData, // Matches {{my_file}} in EmailJS template for attachment
         };
 
         const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
