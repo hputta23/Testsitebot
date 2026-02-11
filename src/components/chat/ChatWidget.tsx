@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ChatMessage from './ChatMessage';
 import type { Message } from './ChatMessage';
 import ChatInput from './ChatInput';
+import { sendApplicationEmail } from '../../utils/emailService';
 
 const ChatWidget = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -36,11 +37,6 @@ const ChatWidget = () => {
             timestamp: new Date()
         }]);
     };
-
-    // Import sendApplicationEmail
-    import { sendApplicationEmail } from '../../utils/emailService';
-
-    // ... (inside component)
 
     const handleSendMessage = async (text: string, file?: File) => {
         // Add User Message
