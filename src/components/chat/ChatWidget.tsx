@@ -39,6 +39,8 @@ const ChatWidget = () => {
     };
 
     const handleSendMessage = async (text: string, file?: File) => {
+        console.log('handleSendMessage called', { text, file, isFile: !!file });
+
         // Add User Message
         const tempId = Date.now().toString();
         const userMsg: Message = {
